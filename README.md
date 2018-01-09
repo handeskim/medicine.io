@@ -19,4 +19,4 @@ Phần Mềm Quản lý bán hàng, Đơn hàng Thuốc Và Trị liệu.
         3) Sendemail
     ##### Cơ chế Server:
         Linux, Mysql, Realtime, API Restful Core. 
-####### License MIT Accept Liability TRAN CONG VINH, Developer Core System. Handeskim
+License MIT Accept Liability TRAN CONG VINH, Developer Core System. Handeskim
