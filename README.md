@@ -1,6 +1,7 @@
 ### medicine.io
 
-Phần Mềm Quản lý bán hàng, Đơn hàng Thuốc Và Trị liệu
+Phần Mềm Quản lý bán hàng, Đơn hàng Thuốc Và Trị liệu.
+    
     ##### Mô Tả
         - Quản lý người dùng
         - Quản lý đơn hàng
@@ -10,7 +11,7 @@ Phần Mềm Quản lý bán hàng, Đơn hàng Thuốc Và Trị liệu
             +) Quản lý bệnh trị liệu, theo đơn thuốc.
         - Quản lý kế toán.
         - Quản lý kho, sản phẩm thuốc.
-        - Báo cáo, đơn hàng, Sản phẩm, Trị liệu,
+        - Báo cáo, đơn hàng, Sản phẩm, Trị liệu.
     
     ##### Chức năng. 
         1) Tác vụ nghiệp vụ quản lý. Tìm kiếm, phân quyền, Search, Report, Deletel, Review, Edit...
