@@ -1,7 +1,7 @@
 CKEDITOR.editorConfig = function (config) {  
   /* Filebrowser routes */
   // The location of a script that handles file uploads in the Image dialog.
-  config.filebrowserImageUploadUrl = "http://member.it.vn/dashboard/assets/filemanager_in_ckeditor/js/ckeditor/filemanager/connectors/php/upload.php?Type=Image";
+  config.filebrowserImageUploadUrl = "http://http://medicine.io/assets/filemanager_in_ckeditor/js/ckeditor/filemanager/connectors/php/upload.php?Type=Image";
              
   config.allowedContent = true;
   // Rails CSRF token

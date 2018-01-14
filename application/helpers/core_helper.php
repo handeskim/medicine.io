@@ -7,6 +7,12 @@ if(! function_exists('microsecond')){
 		return $s; 
 	}
 }
+
+if(! function_exists('error_authorities')){
+	function error_authorities() {
+		return "Account not enough data access level. Please come back";
+	}
+}
 if(! function_exists('Core_barcode')){
 	function Core_barcode($string){
 		 $ci = &get_instance();

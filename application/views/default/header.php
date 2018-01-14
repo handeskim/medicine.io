@@ -35,40 +35,106 @@
 <div class="wrapper">
   <header   class="main-header">
     <!-- Logo -->
-    <a href="<?php echo base_url('apps');?>" class="logo">
+    <a href="<?php echo base_url('cms/dashboard');?>" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini">Apps</span>
+      <span class="logo-mini"><img style="height: 24px;margin-top: 12px;" src="<?php echo base_url();?>public/logo/logopqa.png"" ></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg">Apps Convert Phone</span>
+      <span class="logo-lg">
+		<img style="height: 50px;" src="<?php echo base_url();?>public/logo/logopqa.png"" >
+	  </span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
       <!-- Sidebar toggle button-->
       <a href="" class="sidebar-toggle" data-toggle="push-menu" role="button">
-       <i class="fa fa-fw fa-hand-o-left"></i>
+       <i class="fa fa-bars fa-hand-o-left"></i>
         <span class="sr-only fa fa-minus-square-o">Toggle navigation</span>
       </a>
-
+		
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-          <li class="dropdown user user-menu">
+		<li class="dropdown notifications-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo base_url();?>public/images/avata/default.png" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php echo $user_data["name"]; ?></span>
+              <i style="color: #ed3237;font-size: 18px;" class="fa fa-bell-o"></i>
+              <span class="label label-warning">10</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">You have 10 notifications</li>
+              <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
+                      page and may cause design problems
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-users text-red"></i> 5 new members joined
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-shopping-cart text-green"></i> 25 sales made
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-user text-red"></i> You changed your username
+                    </a>
+                  </li>
+                </ul>
+              </li>
+             
+            </ul>
+          </li>
+          <li class="dropdown user user-menu">
+           <?php 
+                $user_data = $this->session->userdata('data_users');
+                if(isset($user_data)){
+                  if(isset($user_data['hinh_anh'])){
+                    if(!empty($user_data['hinh_anh'])){
+                      $img_awata = "assets/xcrud/upload/staff/".$user_data['hinh_anh'];
+                    }else{
+                      $img_awata = "public/images/avata/default.png";
+                    }
+                  }else{
+                    $img_awata = "public/images/avata/default.png";
+                  }
+                }else{
+                  $img_awata = "public/images/avata/default.png";
+                }
+              ?>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <img src="<?php echo base_url().$img_awata;?>" class="user-image" alt="User Image">
+              <span class="hidden-xs"><?php echo $user_data["full_name"]; ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="<?php echo base_url();?>public/images/avata/default.png" class="img-circle" alt="User Image">
+              
+              <img src="<?php echo base_url().$img_awata;?>" class="img-circle" alt="User Image">
 
                 <p>
-                 <?php echo $user_data['username']; ?> <br>
-                   <small>Quyền Hạn: <?php 
-				   if(!empty($user_data['role'])){
-					   if($user_data['role']==1){
+                 <?php echo "Account Name is " .$user_data['email']; ?> <br>
+                   <small>Authorities: <?php 
+				   if(!empty($user_data['authorities'])){
+					   if($user_data['authorities']==1){
+						   echo "Administrator";
+					   }else if($user_data['authorities']==2){
 						   echo "Admin";
-					   }else{
-						   echo "Thành Viên";
+					   }else if($user_data['authorities']==3){
+						   echo "Staff Accountant";
+					   }else if($user_data['authorities']==4){
+						   echo "Staff";
+					   }else if($user_data['authorities']==5){
+						   echo "Oder staff";
 					   }
 				   }
 				   ?> </small>

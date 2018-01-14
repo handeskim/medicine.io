@@ -32,30 +32,32 @@
 <div class="login-box">
   <div class="login-logo">
 	{msg}
+	
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <h5 class="login-box-msg">Đăng nhập hệ thống</br></h5>
+  	<div class="col-md-12">
+		<img style="height: auto;width: 100%;margin-bottom: 24px;" src="<?php echo base_url();?>public/logo/logopqa.png" />
+	</div>
+    <h5 style="text-align: center;text-transform: uppercase;font-size: 20px;" class="login-box-msg">HỆ THỐNG QUẢN LÝ PQA</br></h5>
     <form action="#" method="post">
       <div class="form-group has-feedback">
-        <input name="username" type="text" class="form-control" placeholder="Email" required />
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        <input name="username" type="text" class="form-control" placeholder="Tên đăng nhập hoặc email" required />
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input name="password" type="password" class="form-control" placeholder="Password" required />
+        <input name="password" type="password" class="form-control" placeholder="Mật khẩu" required />
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>			
       <div class="row">
        
                 <input type="hidden" name="cmd" class="form-control" value="cmdSign" required />
         
-        <div class="col-xs-6">
-          <a href="<?php echo base_url();?>register" class="btn btn-default btn-lg">Đăng ký</a>
-        </div>
+        <div class="col-md-12">
+           <button type="submit" class="btn btn-block btn-success btn-flat  btn-lg ">Đăng Nhập</button>
+		 </div>
         <!-- /.col -->
-        <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary  btn-lg ">Đăng Nhập</button>
-        </div>
+       
         <!-- /.col -->
       </div>
     </form>

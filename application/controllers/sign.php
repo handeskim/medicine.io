@@ -2,17 +2,16 @@
 class Sign extends MY_Controller{
 	function __construct(){
 		parent::__construct();
-		//$this->load->library('rest');
 		$this->load->model('global_model', 'GlobalMD');	
 		$auth_sign = $this->session->userdata('auth_sign');
 		if($auth_sign==true){
-			redirect(base_url('apps'));
+			redirect(base_url('cms'));
 		}
 	}
 	public function SignCheck($params_sign){
 		$username = trim($params_sign["username"]);
 		$password  = trim($params_sign["password"]);
-		$sql_sign = "SELECT * FROM `users` WHERE `username` = '$username' AND `passwords` = '$password' AND `status` = 1";
+		$sql_sign = "SELECT * FROM `staff` WHERE `code` = '$username' AND `password` = '$password' AND `status` = 1";
 		$result = $this->GlobalMD->query_global($sql_sign);
 		if(!empty($result)){
 			return $result;
@@ -57,7 +56,7 @@ class Sign extends MY_Controller{
 		}
 		$data = array(
 			'msg' => $msg,
-			'title'=> 'Tools Convert Phone',
+			'title'=> 'Quản lý dược phẩm',
 		);
 		$this->parser->parse('default/sign',$data);
 	}

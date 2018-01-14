@@ -5,7 +5,7 @@ class Xcrud_config
 {
 	
     // default connection
-    public static $dbname = 'apt'; // Your database name
+    public static $dbname = 'medicine'; // Your database name
     public static $dbuser = 'root'; // Your database username
     public static $dbpass = ''; // // Your database password
     public static $dbhost = 'localhost'; // Your database host, 'localhost' is default.
@@ -23,13 +23,13 @@ class Xcrud_config
     
     // session
     public static $sess_name = 'PHPSESSID'; // If your script is already using the session, specify the session name for it. By default, the name of the session in PHP equal 'PHPSESSID'.
-    public static $sess_expire = 30; // Specifies the lifetime of the session, as well as the existence of a key safety (for example, the maximum edit-saving timeout).
+    public static $sess_expire = 60; // Specifies the lifetime of the session, as well as the existence of a key safety (for example, the maximum edit-saving timeout).
     public static $dynamic_session = false; // this option is used for compatibility with with frameworks and cms that using dynamic session name.
     
     // alternative session (reqires memcache(d) and mcrypt)
     public static $alt_session = false; // use this only if you have troubles with native php sessions
     public static $alt_encription_key = 'super enc key'; // needs to protect alt. session data, required if alt. session is enabled
-    public static $alt_lifetime = 30; // in minutes, maximum time between requests when instance's data can be valid
+    public static $alt_lifetime = 60; // in minutes, maximum time between requests when instance's data can be valid
     public static $mc_host = 'localhost'; // Memcache(d) host
     public static $mc_port = 11211; // Memcache(d) port
     
@@ -45,7 +45,7 @@ class Xcrud_config
     
     // editor
 
-   public static $editor_url = ''; // URL path to editor script, if you want to use the visual editor.
+   public static $editor_url = '/assets/xcrud/ckeditor/ckeditor.js'; // URL path to editor script, if you want to use the visual editor.
     //public static $editor_url = 'editors/ckeditor/ckeditor.js';
     public static $editor_init_url = ''; //  URL path to your custom initialization file for editor.
     public static $force_editor = true; // Forced initialization of editor, even if the path is not specified. Check this if you're already using editor on your page.

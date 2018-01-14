@@ -415,7 +415,7 @@ a:hover,a:active,a:focus {
 	text-decoration:none;
 	padding-right:5px;
 	margin-top:3px;
-	font-size:11px
+	font-size:15px
 }
 .user-panel>.info>a>.fa,.user-panel>.info>a>.ion,.user-panel>.info>a>.glyphicon {
 	margin-right:3px
@@ -1902,8 +1902,8 @@ a:hover,a:active,a:focus {
 	-webkit-box-shadow:none;
 	box-shadow:none;
 	border:1px solid transparent;
-	height: 50px !important;
-    line-height: 40px;
+	height: 30px;
+  
 }
 .btn.uppercase {
 	text-transform:uppercase
@@ -2683,9 +2683,9 @@ table.text-center,table.text-center td,table.text-center th {
 	margin:0
 }
 .treeview-menu>li>a {
-	    padding: 5px 0px 3px 0px;
+	padding: 10px 0px 5px 0px;
     display: block;
-    font-size: 11px;
+    font-size: 12px;
     text-transform: capitalize;
 }
 .treeview-menu>li>a>.fa,.treeview-menu>li>a>.glyphicon,.treeview-menu>li>a>.ion {
@@ -2824,7 +2824,8 @@ table.text-center,table.text-center td,table.text-center th {
 	color:#444
 }
 .login-page,.register-page {
-	background:#d2d6de
+	/* background:#d2d6de */
+	background:#fff212
 }
 .login-box,.register-box {
 	width:360px;
@@ -2837,10 +2838,12 @@ table.text-center,table.text-center td,table.text-center th {
 	}
 }
 .login-box-body,.register-box-body {
-	background:#fff;
+	/* background:#fff; */
+	background:#fff212; 
 	padding:20px;
 	border-top:0;
-	color:#666
+	color:#ed3237
+	/* color:#666 */
 }
 .login-box-body .form-control-feedback,.register-box-body .form-control-feedback {
 	color:#777

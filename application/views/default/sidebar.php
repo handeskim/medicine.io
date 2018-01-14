@@ -4,11 +4,27 @@
   <!-- Sidebar user panel -->
   <div class="user-panel">
 	<div class="pull-left image">
-	  <img src="<?php echo base_url();?>public/images/avata/default.png" class="img-circle" alt="User Image">
+		<?php 
+			$user_data = $this->session->userdata('data_users');
+			if(isset($user_data)){
+				if(isset($user_data['hinh_anh'])){
+					if(!empty($user_data['hinh_anh'])){
+						$img_awata = "assets/xcrud/upload/staff/".$user_data['hinh_anh'];
+					}else{
+						$img_awata = "public/images/avata/default.png";
+					}
+				}else{
+					$img_awata = "public/images/avata/default.png";
+				}
+			}else{
+				$img_awata = "public/images/avata/default.png";
+			}
+		?>
+	  <img src="<?php echo base_url().$img_awata;?>" class="img-circle" alt="User Image">
 	</div>
 	<div class="pull-left info">
-	  <p><?php echo $user_data["name"]; ?></p>
-	  <a href="#"><i class="fa fa-circle text-success"></i> Online</a><br>
+	  <p></p>
+	  <a href="#"><?php echo $user_data["email"]; ?></a><br>
 	</div>
 	
   </div>
@@ -18,22 +34,62 @@
   <!-- sidebar menu: : style can be found in sidebar.less -->
   
   <ul class="sidebar-menu" data-widget="tree">
-	<li class="header">HẠN SỬ DỤNG / ĐIỂM</li>
-	<li ><a><i class="fa fa-money"></i><span id="pid_score"> </span><a></li>
-	<li class="header" style="color: #4b646f;background: #1a2226;">CÔNG CỤ</li>
-		<?php 
-				   if(!empty($user_data['role'])){
-					   if($user_data['role']==1){
-						   echo '<li><a href="http://vnphones.com/cms/dashboard"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
-	<li ><a href="http://vnphones.com/apps"><i class="fa fa-send"></i> <span>Tools Convert UID</span></a></li>';
-					   }else{
-						   echo '<li ><a href="http://vnphones.com/apps"><i class="fa fa-send"></i> <span>Tools Convert UID</span></a></li>';
-					   }
-				   }
-	?>
-	<li ><a target="_blank" href="http://www.textfilesplitter.com/"><i class="fa fa-edit"></i> <span>Tách Nhỏ File</span></a></li>
-	<li ><a href="<?php echo base_url();?>cms/profile"><i class="fa fa-edit"></i> <span>Đổi Mật Khẩu</span></a></li>
-	<li><a href="<?php echo base_url()?>exits"><i class="fa fa-sign-out"></i> <span>Thoát</span></a></li>
+	
+	<li class="header">Dashboard</li>
+	<li class="treeview">
+		<a href="#">
+		<i class="fa fa-briefcase"></i> <span>Customer</span>
+			<span class="pull-right-container">
+			<i class="fa fa-angle-left pull-right"></i>
+			</span>
+		</a>
+		<ul class="treeview-menu">
+			<li><a href="<?php echo base_url();?>cms/Customer_Management"><i class="fa fa-user-secret"></i> Customer Management</a></li>
+			<li><a href="<?php echo base_url();?>cms/Scheduling"><i class="fa fa-history"></i> Scheduling Callback</a></li>
+		</ul>
+	</li>
+	<li class="treeview">
+		<a href="#">
+		<i class="fa fa-shopping-cart"></i> <span>Oders</span>
+			<span class="pull-right-container">
+			<i class="fa fa-angle-left pull-right"></i>
+			</span>
+		</a>
+		<ul class="treeview-menu">
+			<li><a href="<?php echo base_url();?>cms/Oders_Management"><i class="fa fa-shopping-cart"></i> Orders Management</a></li>
+
+		</ul>
+	</li>
+	<li class="treeview">
+		<a href="#">
+		<i class="fa fa-cubes"></i> <span>Product</span>
+			<span class="pull-right-container">
+			<i class="fa fa-angle-left pull-right"></i>
+			</span>
+		</a>
+		<ul class="treeview-menu">
+			<li><a href="<?php echo base_url();?>cms/Product_Management"><i class="fa fa-cube"></i> Product Management</a></li>
+
+		</ul>
+	</li>
+	
+	<li class="treeview">
+		<a href="#">
+		<i class="fa fa-gears"></i> <span>General</span>
+			<span class="pull-right-container">
+			<i class="fa fa-angle-left pull-right"></i>
+			</span>
+		</a>
+		<ul class="treeview-menu">
+			<li><a href="<?php echo base_url();?>cms/staff"><i class="fa fa-users"></i> Staff / Accounts</a></li>
+			<li><a href="<?php echo base_url();?>cms/PartnersPost"><i class="fa fa-ship"></i> Partners Post</a></li>
+			<li><a href="<?php echo base_url();?>cms/TypesPharma"><i class="fa  fa-eyedropper"></i> Types Pharma</a></li>
+			
+		</ul>
+	</li>
+	
+	<li><a  href="<?php echo base_url()?>exits"><i class="fa fa-sign-out"></i> <span>Log out</span></a></li>
+	<li class="header">Catalog Manager navigation panel</li>
   </ul>
 </section>
 <!-- /.sidebar -->
