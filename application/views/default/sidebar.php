@@ -44,8 +44,8 @@
 			</span>
 		</a>
 		<ul class="treeview-menu">
-			<li><a href="<?php echo base_url();?>cms/Customer_Management"><i class="fa fa-user-secret"></i> Customer Management</a></li>
-			<li><a href="<?php echo base_url();?>cms/Scheduling"><i class="fa fa-history"></i> Scheduling Callback</a></li>
+			<li><a href="<?php echo base_url();?>cms/customer_management"><i class="fa fa-user-secret"></i> Customer Management</a></li>
+			<li><a href="<?php echo base_url();?>cms/scheduling"><i class="fa fa-history"></i> Scheduling Callback</a></li>
 		</ul>
 	</li>
 	<li class="treeview">
@@ -56,7 +56,7 @@
 			</span>
 		</a>
 		<ul class="treeview-menu">
-			<li><a href="<?php echo base_url();?>cms/Oders_Management"><i class="fa fa-shopping-cart"></i> Orders Management</a></li>
+			<li><a href="<?php echo base_url();?>cms/oders_management"><i class="fa fa-shopping-cart"></i> Orders Management</a></li>
 
 		</ul>
 	</li>
@@ -68,7 +68,7 @@
 			</span>
 		</a>
 		<ul class="treeview-menu">
-			<li><a href="<?php echo base_url();?>cms/Product_Management"><i class="fa fa-cube"></i> Product Management</a></li>
+			<li><a href="<?php echo base_url();?>cms/product_management"><i class="fa fa-cube"></i> Product Management</a></li>
 
 		</ul>
 	</li>
@@ -82,8 +82,8 @@
 		</a>
 		<ul class="treeview-menu">
 			<li><a href="<?php echo base_url();?>cms/staff"><i class="fa fa-users"></i> Staff / Accounts</a></li>
-			<li><a href="<?php echo base_url();?>cms/PartnersPost"><i class="fa fa-ship"></i> Partners Post</a></li>
-			<li><a href="<?php echo base_url();?>cms/TypesPharma"><i class="fa  fa-eyedropper"></i> Types Pharma</a></li>
+			<li><a href="<?php echo base_url();?>cms/partnersPost"><i class="fa fa-ship"></i> Partners Post</a></li>
+			<li><a href="<?php echo base_url();?>cms/typesPharma"><i class="fa  fa-eyedropper"></i> Types Pharma</a></li>
 			
 		</ul>
 	</li>
@@ -94,10 +94,3 @@
 </section>
 <!-- /.sidebar -->
 </aside>
-<script>
-jQuery(document).ready(function(){
-	jQuery.get( url_global+"apps/api/ClientScore", function( data_client_score ) {
-		jQuery( "#pid_score" ).html( data_client_score.results );
-	});
-});
-</script>
