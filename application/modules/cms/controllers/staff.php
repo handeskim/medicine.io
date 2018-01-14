@@ -41,7 +41,7 @@ class Staff extends MY_Controller{
 			}
 			$xcrud->table_name('[HRM] - Staff Management');
 			$xcrud->label('full_name','Họ Và Tên');
-			$xcrud->label('email','Username');
+			$xcrud->label('email','email');
 			$xcrud->label('ngay_sinh','Ngày Sinh');
 			$xcrud->label('dia_chi','Địa Chỉ');
 			$xcrud->label('dien_thoai','Số Điện Thoại');

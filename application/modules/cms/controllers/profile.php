@@ -31,7 +31,7 @@ class Profile extends MY_Controller{
 		$xcrud->unset_search();
 		$xcrud->table_name('My Account Information');
 		$xcrud->label('full_name','Họ Và Tên');
-			$xcrud->label('email','Username');
+			$xcrud->label('email','email');
 			$xcrud->label('ngay_sinh','Ngày Sinh');
 			$xcrud->label('dia_chi','Địa Chỉ');
 			$xcrud->label('dien_thoai','Số Điện Thoại');

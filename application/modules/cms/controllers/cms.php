@@ -26,7 +26,7 @@ class Cms extends MY_Controller{
 		if(isset($this->login)==false){
 			redirect(base_url('sign'));
 		}else{
-			redirect(base_url('cms/dashboard'));
+			redirect(base_url('apps'));
 		}
 	}
 	
