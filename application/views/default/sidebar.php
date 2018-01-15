@@ -38,52 +38,52 @@
 	<li class="header">Dashboard</li>
 	<li class="treeview">
 		<a href="#">
-		<i class="fa fa-briefcase"></i> <span>Customer</span>
+		<i class="fa fa-briefcase"></i> <span>Khách hàng</span>
 			<span class="pull-right-container">
 			<i class="fa fa-angle-left pull-right"></i>
 			</span>
 		</a>
 		<ul class="treeview-menu">
-			<li><a href="<?php echo base_url();?>cms/customer_management"><i class="fa fa-user-secret"></i> Customer Management</a></li>
-			<li><a href="<?php echo base_url();?>cms/scheduling"><i class="fa fa-history"></i> Scheduling Callback</a></li>
+			<li><a href="<?php echo base_url();?>cms/customer_management"><i class="fa fa-user-secret"></i> Quản lý khách hàng</a></li>
+			<li><a href="<?php echo base_url();?>cms/scheduling"><i class="fa fa-history"></i> Lịch gọi lại</a></li>
 		</ul>
 	</li>
 	<li class="treeview">
 		<a href="#">
-		<i class="fa fa-shopping-cart"></i> <span>Oders</span>
+		<i class="fa fa-shopping-cart"></i> <span>Đơn hàng</span>
 			<span class="pull-right-container">
 			<i class="fa fa-angle-left pull-right"></i>
 			</span>
 		</a>
 		<ul class="treeview-menu">
-			<li><a href="<?php echo base_url();?>cms/oders_management"><i class="fa fa-shopping-cart"></i> Orders Management</a></li>
+			<li><a href="<?php echo base_url();?>cms/oders_management"><i class="fa fa-shopping-cart"></i> Quản lý đơn hàng</a></li>
 
 		</ul>
 	</li>
 	<li class="treeview">
 		<a href="#">
-		<i class="fa fa-cubes"></i> <span>Product</span>
+		<i class="fa fa-cubes"></i> <span>Sản Phẩm</span>
 			<span class="pull-right-container">
 			<i class="fa fa-angle-left pull-right"></i>
 			</span>
 		</a>
 		<ul class="treeview-menu">
-			<li><a href="<?php echo base_url();?>cms/product_management"><i class="fa fa-cube"></i> Product Management</a></li>
+			<li><a href="<?php echo base_url();?>cms/product_management"><i class="fa fa-cube"></i> Quản lý Sản phẩm</a></li>
 
 		</ul>
 	</li>
 	
 	<li class="treeview">
 		<a href="#">
-		<i class="fa fa-gears"></i> <span>General</span>
+		<i class="fa fa-gears"></i> <span>Cấu hình chung</span>
 			<span class="pull-right-container">
 			<i class="fa fa-angle-left pull-right"></i>
 			</span>
 		</a>
 		<ul class="treeview-menu">
-			<li><a href="<?php echo base_url();?>cms/staff"><i class="fa fa-users"></i> Staff / Accounts</a></li>
-			<li><a href="<?php echo base_url();?>cms/partnersPost"><i class="fa fa-ship"></i> Partners Post</a></li>
-			<li><a href="<?php echo base_url();?>cms/typesPharma"><i class="fa  fa-eyedropper"></i> Types Pharma</a></li>
+			<li><a href="<?php echo base_url();?>cms/staff"><i class="fa fa-users"></i> Nhân viên/Tài khoản</a></li>
+			<li><a href="<?php echo base_url();?>cms/partnersPost"><i class="fa fa-ship"></i> Đối tác bưu chính</a></li>
+			<li><a href="<?php echo base_url();?>cms/typesPharma"><i class="fa  fa-eyedropper"></i> Kiểu thuốc</a></li>
 			
 		</ul>
 	</li>

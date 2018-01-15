@@ -8,7 +8,14 @@ class Product_Management extends MY_Controller{
 		$this->user_data = $this->session->userdata('data_users');
 		$this->permisson = $this->user_data['authorities'];
 		$id_clients = $this->user_data['id'];
-		if(isset($this->login)==false){
+		// if(isset($this->login)==false){
+		// 	redirect(base_url('sign'));
+		// }
+		if(isset($this->login)){
+			if(empty($this->login)){
+				redirect(base_url('sign'));
+			}
+		}else{
 			redirect(base_url('sign'));
 		}
 		
