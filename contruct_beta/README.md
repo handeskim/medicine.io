@@ -1,5 +1,6 @@
 ##### Cấu trúc dữ liệu của hệ thống quản lý
-- Quản lý ngường dùng :
+------------------------------------------------------------
+==================Quản lý ngường dùng=======================
 Table_name: users
     {
         'usercode'=> 'mã người dùng'
@@ -9,3 +10,4 @@ Table_name: users
         'emails' => 'thư diện tử',
         'status' => 'trạng thái sử dụng',
     }
+------------------------------------------------------------
