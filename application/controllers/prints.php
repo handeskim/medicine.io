@@ -108,6 +108,9 @@ class Prints extends MY_Controller{
 			c.dien_thoai_2 as customer_phone_home,
 			c.dia_chi as customer_addr,
 			c.note as customer_note,
+			tpt.name_type_orders as posts_name,
+			tpt.id as posts_id,
+			tpt.url_check_orders as post_url,
 			odr.name_oders as name_type_orders,
 			ppm.name_types_pharma as name_pharma,
 			pgm.name_generic_pharma as generic_pharma
@@ -676,6 +679,12 @@ class Prints extends MY_Controller{
 						</tr>
 						</tbody>
 						</table>
+						<table cellpadding="0" cellspacing="0">
+							<tr class="">
+								<td style="text-align: left;">Dịch vụ vận chuyển:  <b> '.$data_field[0]['posts_name'].'</b></td>
+								<td style="text-align: left;">Mã bưu vận: <b> '.$data_field[0]['orders_code'].' </b></td>
+							</tr>';
+						$temp .='</table>
 						<table cellpadding="0" cellspacing="0">
 						<tbody>
 						<tr class="heading">

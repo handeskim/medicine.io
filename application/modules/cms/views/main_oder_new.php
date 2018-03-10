@@ -59,8 +59,9 @@
 								<div class="col-md-6">
 									<label for="exampleInputEmail1">Nhà cung cấp dịch vụ</label>
 									<select name="NamePost" class="form-control"> 
-										<option value="1"> VNPost</option>
-										<option value="2"> Viettel Post</option>
+										<?php foreach($PostsOption as $value_posts){?>
+										<option value="<?php echo $value_posts['id'];?>"> <?php echo $value_posts['name_type_orders'];?></option>
+										<?php } ?>
 									</select>
 								</div>
 								
@@ -146,7 +147,7 @@
 									<div class="col-md-12">
 										<div id="CallBack"> 
 											<label>Ngày gọi lại</label>
-											<input id="date_allBack" type="text" class="form-control" name="date_allBack" value=""  >
+											<input id="date_allBack" type="text" class="form-control" name="date_allBack" placeholder="dd/mm/yyyy"  >
 											<label for="exampleInputEmail1">Ghi chú gọi lại</label>
 											<textarea id="note_callback" name="note_callback" rows="3" cols="50"></textarea>
 										</div>

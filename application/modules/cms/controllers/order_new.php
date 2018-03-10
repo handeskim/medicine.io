@@ -190,6 +190,7 @@ class Order_new extends MY_Controller{
 			'msg' => $msg,
 			'discounts' => $this->discounts,
 			'user_data' => $this->user_data,
+			'PostsOption' => $this->OrderPostsOption(),
 			'title'=> 'Tạo đơn hàng',
 			'title_main' => 'Tạo đơn hàng',
 		);
@@ -199,7 +200,11 @@ class Order_new extends MY_Controller{
 		$this->parser->parse('main_oder_new',$data);
 		$this->parser->parse('default/footer',$data);
 	}
-	
+	private function OrderPostsOption(){
+		$sql = "SELECT * FROM `type_post` LIMIT 0, 1000";
+		return  $this->GlobalMD->query_global($sql);
+		
+	}
 	private function CheckOrder($order){
 		$sql = "SELECT * FROM orders WHERE code_orders = '$order'";
 		$resuls = $this->GlobalMD->query_global($sql);

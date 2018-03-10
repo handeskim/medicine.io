@@ -122,8 +122,6 @@ function html_list_search_phone(list){
 	$.each(list, function(i, item) {
 		temp += '<tr>';
 		temp += '<td><input type="hidden" id="phoneid'+item.id+'" value="'+item.code+'"/></td>';
-		temp += '<td><span>'+item.code+' </span></td>';
-		temp += '<td><span>'+item.dien_thoai+'</span></td>';
 		temp += '<td><span>'+item.full_name+'</span></td>';
 		temp += '<td><span>'+item.email+'</span></td>';
 		temp += '<td><span>'+item.dia_chi+'</span></td>';
