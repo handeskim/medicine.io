@@ -1,10 +1,11 @@
 <?php
-class TypesPharma extends MY_Controller{
+class Generic extends MY_Controller{
 	function __construct(){
 		parent::__construct();
 		$this->load->library('rest');
 		$this->load->model('global_model', 'GlobalMD');	
 		$this->login = $this->session->userdata('auth_sign');
+		
 		if($this->login){
 			$this->user_data = $this->session->userdata('data_users');
 			$this->permisson = $this->user_data['authorities'];
@@ -21,10 +22,10 @@ class TypesPharma extends MY_Controller{
 		$msg ='';
 		$data = array(
 			'msg' => $msg,
-			'content' => $this->PartnersPost(),
+			'content' => $this->Generics(),
 			'user_data' => $this->user_data,
-			'title'=> 'Partners Post',
-			'title_main' => 'Partners Post',
+			'title'=> 'Cấu Hình Chung ',
+			'title_main' => 'Cấu Hình Chung ',
 		);
 		$this->parser->parse('default/header',$data);
 		$this->parser->parse('default/sidebar',$data);
@@ -32,19 +33,25 @@ class TypesPharma extends MY_Controller{
 		$this->parser->parse('default/layout/main_curd_account',$data);
 		$this->parser->parse('default/footer',$data);
 	}
-	private function PartnersPost(){
+	private function Generics(){
 		if($this->permisson == 1 || $this->permisson == 2){
 			$xcrud = Xcrud::get_instance();
-			$xcrud->table('types_pharma');
+			$xcrud->table('generic');
+			$xcrud->unset_remove();
+			$xcrud->unset_print();
+			$xcrud->unset_add();
 			$xcrud->unset_csv();
-			if($this->permisson == 2){
-				$xcrud->unset_remove();
-			}
-			$xcrud->table_name('[Pharma] - Management Types Pharma');
-			$xcrud->label('name_types_pharma','Tên kiểu Thuốc');
-			$xcrud->validation_required('name_types_pharma');
-			$xcrud->columns('name_types_pharma');
-			$xcrud->benchmark();
+			 $xcrud->unset_add();
+			$xcrud->unset_csv();
+			$xcrud->unset_limitlist();
+			$xcrud->unset_numbers();
+			$xcrud->unset_pagination();
+			$xcrud->unset_print();
+			$xcrud->unset_search();
+			$xcrud->unset_sortable();
+			$xcrud->table_name('[MPP] - Cấu Hình Chung');
+			$xcrud->label('company_invoice','Thông tin công ty ở hóa đơn');
+			$xcrud->validation_required('name_type_orders');
 			$response = $xcrud->render();
 			return $response;
 		}else{

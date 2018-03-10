@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="<?php echo base_url();?>public/bower_components/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="<?php echo base_url();?>public/bower_components/Ionicons/css/ionicons.min.css">
   <link rel="stylesheet" href="<?php echo base_url();?>public/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="<?php echo base_url();?>public/dist/css/pqa_global.css">
   <link rel="stylesheet" href="<?php echo base_url();?>public/dist/css/skins/_all-skins.min.css">
   <link rel="stylesheet" href="<?php echo base_url();?>public/bower_components/morris.js/morris.css">
   <link rel="stylesheet" href="<?php echo base_url();?>public/bower_components/jvectormap/jquery-jvectormap.css">
@@ -25,11 +26,23 @@
 	<script type="text/javascript">
   		var BASE_URL = "<?php echo base_url(); ?>";
   	</script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-	<script src="<?php echo base_url();?>public/dist/js/angular/1.2.1/angular.min.js"></script>
-	<script src="<?php echo base_url();?>public/plugins/bootpag/jquery.bootpag.min.js"></script>
-
-  <script src="<?php echo base_url();?>public/dist/css/rila_global.css"></script>
+	<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip 
+	<script src="public/dist/js/angular/1.2.1/angular.min.js"></script>
+	
+	<script src="public/plugins/bootpag/jquery.bootpag.min.js"></script>
+	-->
+  <script src="<?php echo base_url();?>app/notification.js"></script>
+   <?php 
+	$user_data = $this->session->userdata('data_users');
+	$authorities = $user_data['authorities'];
+	if($authorities ==3 || $authorities == 5){
+	?>
+	
+	<meta http-equiv="refresh" content="1200" > 
+	<?php } ?>
+	<script type="text/javascript">
+  		var authorities = "<?php echo $authorities; ?>";
+  	</script>
 </head>
 <body ng-app="rilaApps" class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -53,47 +66,9 @@
 		
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-		<li class="dropdown notifications-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i style="color: #ed3237;font-size: 18px;" class="fa fa-bell-o"></i>
-              <span class="label label-warning">10</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 10 notifications</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
-                      page and may cause design problems
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-red"></i> 5 new members joined
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-shopping-cart text-green"></i> 25 sales made
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-user text-red"></i> You changed your username
-                    </a>
-                  </li>
-                </ul>
-              </li>
-             
-            </ul>
-          </li>
+	  	<li class="dropdown notifications-menu" id="notifications_response">
+
+      </li>
           <li class="dropdown user user-menu">
            <?php 
                 $user_data = $this->session->userdata('data_users');
@@ -122,19 +97,19 @@
               <img src="<?php echo base_url().$img_awata;?>" class="img-circle" alt="User Image">
 
                 <p>
-                 <?php echo "Account Name is " .$user_data['email']; ?> <br>
-                   <small>Authorities: <?php 
+                 <?php echo "Mã Nhân viên: " .$user_data['code']; ?> <br>
+                   <small>Chức vụ: <?php 
 				   if(!empty($user_data['authorities'])){
 					   if($user_data['authorities']==1){
-						   echo "Administrator";
+						   echo "Quản trị viên";
 					   }else if($user_data['authorities']==2){
-						   echo "Admin";
+						   echo "Quản trị viên";
 					   }else if($user_data['authorities']==3){
-						   echo "Staff Accountant";
+						   echo "Nhân viên kế toán";
 					   }else if($user_data['authorities']==4){
-						   echo "Staff";
+						   echo "Nhân viên bán hàng";
 					   }else if($user_data['authorities']==5){
-						   echo "Oder staff";
+						   echo "Nhân viên kho";
 					   }
 				   }
 				   ?> </small>

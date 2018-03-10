@@ -5,16 +5,10 @@ class Product_Management extends MY_Controller{
 		$this->load->library('rest');
 		$this->load->model('global_model', 'GlobalMD');	
 		$this->login = $this->session->userdata('auth_sign');
-		$this->user_data = $this->session->userdata('data_users');
-		$this->permisson = $this->user_data['authorities'];
-		$id_clients = $this->user_data['id'];
-		// if(isset($this->login)==false){
-		// 	redirect(base_url('sign'));
-		// }
-		if(isset($this->login)){
-			if(empty($this->login)){
-				redirect(base_url('sign'));
-			}
+		if($this->login){
+			$this->user_data = $this->session->userdata('data_users');
+			$this->permisson = $this->user_data['authorities'];
+			$this->staff = $this->user_data['id'];
 		}else{
 			redirect(base_url('sign'));
 		}
@@ -26,8 +20,8 @@ class Product_Management extends MY_Controller{
 			'msg' => $msg,
 			'content' => $this->Product(),
 			'user_data' => $this->user_data,
-			'title'=> 'Product Management',
-			'title_main' => 'Product Management',
+			'title'=> 'Quản lý sản phẩm',
+			'title_main' => 'Quản lý sản phẩm',
 		);
 		$this->parser->parse('default/header',$data);
 		$this->parser->parse('default/sidebar',$data);
@@ -36,15 +30,31 @@ class Product_Management extends MY_Controller{
 		$this->parser->parse('default/footer',$data);
 	}
 	private function Product(){
-		if($this->permisson == 1 || $this->permisson == 2){
+		
 			$xcrud = Xcrud::get_instance();
 			$xcrud->table('products');
 			$xcrud->unset_csv();
 			$xcrud->unset_print();
+			if($this->permisson == 4 ||  $this->permisson == 5){
+				$xcrud->unset_remove();
+				$xcrud->unset_add();
+				$xcrud->unset_edit();
+				$xcrud->table_name('[Product] - Danh Sách sản phẩm');
+			}
+			if($this->permisson == 3){
+				$xcrud->unset_remove();
+				$xcrud->table_name('[Product] - Quản lý sản phẩm');
+				$xcrud->fields('quantily,price');
+			}
 			if($this->permisson == 2){
 				$xcrud->unset_remove();
+				$xcrud->table_name('[Product] - Quản lý sản phẩm');
+				$xcrud->fields('code_products,name_products,label_products,types,generic,quantily,price,images,manuals,note');
 			}
-			$xcrud->table_name('[Product] - Product Management');
+			if($this->permisson == 1){
+				$xcrud->table_name('[Product] - Quản lý sản phẩm');
+				$xcrud->fields('code_products,name_products,label_products,types,generic,quantily,price,images,manuals,note');
+			}
 			$xcrud->label('code_products','Mã Sản Phẩm');
 			$xcrud->label('name_products','Tên Sản Phẩm');
 			$xcrud->label('label_products','Nhãn sản phẩm');
@@ -55,6 +65,7 @@ class Product_Management extends MY_Controller{
 			$xcrud->label('note','Ghi Chú');
 			$xcrud->label('types','Loại');
 			$xcrud->label('generic','Kiểu');
+			// $xcrud->change_type('price', 'price', '5', array('prefix'=>''));
 			$xcrud->validation_required('code_products');
 			$xcrud->validation_required('name_products');
 			$xcrud->validation_required('label_products');
@@ -64,23 +75,12 @@ class Product_Management extends MY_Controller{
 			$xcrud->validation_required('generic');
 			$xcrud->relation('types','types_pharma','id','name_types_pharma');
 			$xcrud->relation('generic','generic_pharma','id','name_generic_pharma');
-			// $xcrud->relation('authorities','authorities','id','name_auth');
-			// $xcrud->columns('status,code,full_name,hinh_anh,email,passport_id,authorities,status,dien_thoai');
-			$xcrud->fields('code_products,name_products,label_products,types,generic,quantily,price,images,manuals,note');
-			// $xcrud->change_type('password', 'password', 'md5', array('class'=>'xcrud-input form-control', 'maxlength'=>10,'placeholder'=>'Nhập mật khẩu'));
-			$xcrud->change_type('images', 'image', '', 
-									array(
-											'width' => 200, 
-											'height' => 200,
-											'path' => '/upload/product',
-										)
-								);
+		
+			$xcrud->change_type('images', 'image', '', array('width' => 200, 'height' => 200,'path' => '/upload/product',));
 			$xcrud->benchmark();
 			$response = $xcrud->render();
 			return $response;
-		}else{
-			return error_authorities();
-		}
+		
 	}
 }
 ?>

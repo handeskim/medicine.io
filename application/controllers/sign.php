@@ -11,7 +11,7 @@ class Sign extends MY_Controller{
 	public function SignCheck($params_sign){
 		$username = trim($params_sign["username"]);
 		$password  = trim($params_sign["password"]);
-		$sql_sign = "SELECT * FROM `staff` WHERE `code` = '$username' AND `password` = '$password' AND `status` = 1";
+		$sql_sign = "SELECT * FROM `staff` WHERE `code` = '$username' OR `email` = '$username' AND `password` = '$password' AND `status` = 1";
 		$result = $this->GlobalMD->query_global($sql_sign);
 		if(!empty($result)){
 			return $result;
