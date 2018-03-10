@@ -3,6 +3,12 @@
 <script src="<?php echo base_url();?>public/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet" href="<?php echo base_url();?>public/bower_components/bootstrap-daterangepicker/daterangepicker.css">
 <link rel="stylesheet" href="<?php echo base_url();?>public/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+<script>
+  $('#date_allBack').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+ $( "#date_allBack" ).datepicker({
+	dateFormat: 'dd-mm-yy'
+ });
+</script>
 <section class="content">
 	<div class="row">
 	<div class="col-md-12">
@@ -140,7 +146,7 @@
 									<div class="col-md-12">
 										<div id="CallBack"> 
 											<label>Ngày gọi lại</label>
-											<input id="date_allBack" type="text" class="form-control" name="date_allBack" value="" placeholder="mm-dd-yyyy" >
+											<input id="date_allBack" type="text" class="form-control" name="date_allBack" value=""  >
 											<label for="exampleInputEmail1">Ghi chú gọi lại</label>
 											<textarea id="note_callback" name="note_callback" rows="3" cols="50"></textarea>
 										</div>
@@ -174,6 +180,7 @@
 		</div>
 	</div>
 </section>
+
 <script>
   $(function () {
      CKEDITOR.replace('use_guide')
