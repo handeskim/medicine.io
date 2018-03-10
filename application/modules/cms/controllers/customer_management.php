@@ -227,9 +227,9 @@ class Customer_Management extends MY_Controller{
 			}
 			
 			if($this->permisson == 4 || $this->permisson == 5|| $this->permisson == 3){
-				$xcrud->relation('supervisor','staff','id',array('code'),'authorities=4 and id='.$user);
+				$xcrud->relation('supervisor','staff','id',array('full_name'),'authorities=4 and id='.$user);
 			}else{
-				$xcrud->relation('supervisor','staff','id',array('code'),'authorities=4');
+				$xcrud->relation('supervisor','staff','id',array('full_name'),'authorities=4');
 			}
 			$xcrud->change_type('hinh_anh', 'image', '', array('width' => 200, 'height' => 200,'path' => '/upload/Customer/',));
 			$xcrud->button(base_url().'prints/customer_details?code={id}','Prints','fa fa-print','',array('target'=>'_blank'));
@@ -290,9 +290,9 @@ class Customer_Management extends MY_Controller{
 			}
 			
 			if($this->permisson == 4 || $this->permisson == 5|| $this->permisson == 3){
-				$xcrud->relation('supervisor','staff','id',array('code'),'authorities=4 and id='.$user);
+				$xcrud->relation('supervisor','staff','id',array('full_name'),'authorities=4 and id='.$user);
 			}else{
-				$xcrud->relation('supervisor','staff','id',array('code'),'authorities=4');
+				$xcrud->relation('supervisor','staff','id',array('full_name'),'authorities=4');
 			}
 			$xcrud->change_type('hinh_anh', 'image', '', array('width' => 200, 'height' => 200,'path' => '/upload/Customer/',));
 			$xcrud->button(base_url().'prints/customer_details?code={id}','Prints','fa fa-print','',array('target'=>'_blank'));
@@ -351,9 +351,9 @@ class Customer_Management extends MY_Controller{
 			}
 			
 			if($this->permisson == 4 || $this->permisson == 5|| $this->permisson == 3){
-				$xcrud->relation('supervisor','staff','id',array('code'),'authorities=4 and id='.$user);
+				$xcrud->relation('supervisor','staff','id',array('full_name'),'authorities=4 and id='.$user);
 			}else{
-				$xcrud->relation('supervisor','staff','id',array('code'),'authorities=4');
+				$xcrud->relation('supervisor','staff','id',array('full_name'),'authorities=4');
 			}
 			$xcrud->change_type('hinh_anh', 'image', '', array('width' => 200, 'height' => 200,'path' => '/upload/Customer/',));
 			$xcrud->button(base_url().'prints/customer_details?code={id}','Prints','fa fa-print','',array('target'=>'_blank'));
