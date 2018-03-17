@@ -13,6 +13,12 @@ $authorities = $user_data['authorities']; ?>
 <script src="<?php echo base_url();?>public/bower_components/moment/min/moment.min.js"></script>
 <script src="<?php echo base_url();?>public/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 <section class="content">
+<script>
+$(document).ready(function(){
+	// $("body").addClass( "myClass yourClass" );
+	$("body").removeClass( "skin-blue sidebar-mini" ).addClass( "skin-blue sidebar-mini sidebar-collapse" );
+})
+</script>
 <div class="row">
 	<div class="col-md-12">
 		

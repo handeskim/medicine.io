@@ -11,7 +11,6 @@ class Api extends REST_Controller {
 			$this->permisson = $this->user_data['authorities'];
 			$this->staff = $this->user_data['id'];
 		}
-		
 	}
 	public function scheduling_get(){
 		$response = array('results' => null);
@@ -48,6 +47,7 @@ class Api extends REST_Controller {
 			o.id as orders_id,
 			o.manuals as orders_manuals,
 			o.note as order_note,
+			o.bill_code as bill_code,
 			o.code_orders as orders_code,
 			o.price as orders_price,
 			o.total_price as orders_total_price,
@@ -65,10 +65,6 @@ class Api extends REST_Controller {
 			o.type_post as orders_posts,
 			o.type_orders as type_ordersx,
 			
-			p.manuals as products_manuals,
-			p.name_products as products_name,
-			p.label_products as products_label,
-			p.note as products_note,
 			p.id as products_id,
 			p.code_products as products_code,
 			s.id as staff_id,
@@ -85,6 +81,7 @@ class Api extends REST_Controller {
 			c.note as customer_note,
 			odr.name_oders as name_type_orders,
 			ppm.name_types_pharma as name_pharma,
+			tpt.name_type_orders as posts_name,
 			pgm.name_generic_pharma as generic_pharma
 			FROM orders o
 			INNER JOIN products p ON o.code_products = p.id
@@ -95,7 +92,7 @@ class Api extends REST_Controller {
 			INNER JOIN customer c ON o.code_customner = c.`code`
 			INNER JOIN type_oders odr ON o.type_orders = odr.id
 			WHERE o.type_orders = 2
-			GROUP BY orders_code
+			GROUP BY bill_code
 			ORDER BY o.date_order DESC
 			";
 			$resuls = $this->QueryCoreAll($sql);
@@ -104,42 +101,27 @@ class Api extends REST_Controller {
 		if($authorities==5){
 			$sql = "SELECT
 			o.id as orders_id,
-			o.manuals as orders_manuals,
-			o.note as order_note,
+			o.bill_code as bill_code,
 			o.code_orders as orders_code,
-			o.price as orders_price,
-			o.total_price as orders_total_price,
-			o.discounts as orders_discounts,
 			o.code_staff as orders_staff_id,
 			o.date_order as orders_date_buy,
 			o.date_confim as orders_date_comfim,
 			o.date_send as orders_date_send,
-			o.quantily as orders_quantily,
-			o.email as orders_email,
 			o.type_post as orders_posts,
 			o.full_name as orders_fullname,
 			o.dia_chi as orders_addr,
 			o.dien_thoai as orders_phone,
 			o.code_customner as orders_code_customner,
 			o.type_orders as type_ordersx,
-			p.manuals as products_manuals,
-			p.name_products as products_name,
-			p.label_products as products_label,
-			p.note as products_note,
 			p.id as products_id,
 			p.code_products as products_code,
 			s.id as staff_id,
 			s.full_name as staff_fullname, 
-			s.`code` as staff_code,
-			s.email as staff_email, 
-			s.dien_thoai as staff_phone,
-			c.`code` as customer_code,
-			c.email as customer_email,
 			c.full_name as customer_fullname,
 			c.dien_thoai as customer_phone_mobile, 
 			c.dien_thoai_2 as customer_phone_home,
 			c.dia_chi as customer_addr,
-			c.note as customer_note,
+			tpt.name_type_orders as posts_name,
 			odr.name_oders as name_type_orders,
 			ppm.name_types_pharma as name_pharma,
 			pgm.name_generic_pharma as generic_pharma
@@ -152,7 +134,7 @@ class Api extends REST_Controller {
 			INNER JOIN customer c ON o.code_customner = c.`code`
 			INNER JOIN type_oders odr ON o.type_orders = odr.id
 			WHERE o.type_orders = 3
-			
+			GROUP BY bill_code
 			ORDER BY o.date_confim DESC
 			";
 			$resuls = $this->QueryCoreAll($sql);

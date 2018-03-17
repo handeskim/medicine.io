@@ -21,12 +21,13 @@ $(function(){
 		temp += '<div class="box-body"><table id="response_search" class="table table-bordered table-hover dataTable" >';
 		temp += '<thead>';
 		temp +=  '<tr>';
-			temp += '<th>Mã khách hàng</th>';
-			temp += '<th>Mã hóa đơn</th>';
-			temp += '<th>Tên khách hàng</th>';
-			temp += '<th>Thư điện tử</th>';
-			temp += '<th>Số điện thoại</th>';
-			temp += '<th>Địa chỉ</th>';
+			temp += '<th style="text-algin:center;">Tên khách hàng</th>';
+			temp += '<th style="text-algin:center;">Mã vận đơn</th>';
+			temp += '<th style="text-algin:center;">Người bán</th>';
+			temp += '<th style="text-algin:center;">Dịch vụ vận chuyển</th>';
+			temp += '<th style="text-algin:center;">Số điện thoại</th>';
+			temp += '<th style="text-algin:center;">Địa chỉ</th>';
+			temp += '<th style="text-algin:center;">Ngày mua</th>';
 			temp += '<th></th>';
 			temp += '<th></th>';
 		temp +=  '</tr>';
@@ -34,26 +35,27 @@ $(function(){
 		temp += '<tbody>';
 		$.each(reponse, function(i, item) {
 			temp +=  '<tr>';
-			temp += '<td> '+item.orders_code_customner+'</td>';
+			temp += '<td style="text-transform: capitalize;"> '+item.orders_fullname+'</td>';
 			temp += '<td> '+item.orders_code+'</td>';
-			temp += '<td> '+item.orders_fullname+'</td>';
-			temp += '<td> '+item.orders_email+'</td>';
+			temp += '<td style="text-transform: capitalize;"> '+item.staff_fullname+'</td>';
+			temp += '<td> '+item.posts_name+'</td>';
 			temp += '<td> '+item.orders_phone+'</td>';
-			temp += '<td> '+item.orders_addr+'</td>';
+			temp += '<td style="text-transform: capitalize;"> '+item.orders_addr+'</td>';
+			temp += '<td> '+item.orders_date_buy+'</td>';
 			if(authorities==3 && item.type_ordersx==2){
-				temp += '<td><a title="Approved" target="_blank" href="'+BASE_URL+'route/accountancy?query='+item.orders_code+'" class="btn btn-success"><i class="glyphicon glyphicon-ok-sign"> </i></a></td>';
-				temp += '<td><a title="Reject" target="_blank" href="'+BASE_URL+'route/destroy_accounts?query='+item.orders_code+'" class="btn btn-danger"><i class="glyphicon glyphicon-ban-circle"> </i></a></td>';
+				temp += '<td><a title="Approved" href="'+BASE_URL+'route/accountancy?query='+item.bill_code+'" class="btn btn-success"><i class="glyphicon glyphicon-ok-sign"> </i></a></td>';
+				temp += '<td><a title="Reject"  href="'+BASE_URL+'route/destroy_accounts?query='+item.bill_code+'" class="btn btn-danger"><i class="glyphicon glyphicon-ban-circle"> </i></a></td>';
 			}
 			if(authorities==5 && item.type_ordersx==3){
-				temp += '<td><a title="Approved" target="_blank" href="'+BASE_URL+'route/packer?query='+item.orders_code+'" class="btn btn-success"><i class="glyphicon glyphicon-ok-sign"> </i></a></td>';
-				temp += '<td><a title="Reject" target="_blank" href="'+BASE_URL+'route/destroy_packer?query='+item.orders_code+'" class="btn btn-danger"><i class="glyphicon glyphicon-ban-circle"> </i></a></td>';
+				temp += '<td><a title="Approved"  href="'+BASE_URL+'route/packer?query='+item.bill_code+'" class="btn btn-success"><i class="glyphicon glyphicon-ok-sign"> </i></a></td>';
+				temp += '<td><a title="Reject"  href="'+BASE_URL+'route/destroy_packer?query='+item.bill_code+'" class="btn btn-danger"><i class="glyphicon glyphicon-ban-circle"> </i></a></td>';
 			}
-			temp += '<td><a title="Details" target="_blank" href="'+BASE_URL+'prints/details?query='+item.orders_code+'" class="btn btn-info"><i class="fa fa-eye"> </i></a></td>';
-			temp += '<td><a title="In đơn" target="_blank" href="'+BASE_URL+'prints/orders?query='+item.orders_code+'" class="btn btn-warning"><i class="fa fa-print"></i></a></td>';
-			temp += '<td><a title="In PB" target="_blank" href="'+BASE_URL+'prints/letter?query='+item.orders_code+'" class="btn btn-primary"><i class="fa fa-file"></i></a></td>';
-			temp += '<td><a title="In HD" target="_blank" href="'+BASE_URL+'prints/guide?query='+item.orders_code+'" class="btn btn-primary"><i class="fa fa-file"></i></a></td>';
-			temp += '<td><a title="Tra vận đơn" target="_blank" href="'+BASE_URL+'route/tracking?key='+item.orders_code+'&posts='+item.orders_posts+'" class="btn btn-info"><i class="fa fa-ship"></i></a></td>';
-				
+			temp += '<td><a title="In đơn" target="_blank" href="'+BASE_URL+'prints/orders?query='+item.bill_code+'" class="btn btn-warning"><i class="fa fa-print"></i></a></td>';
+			temp += '<td><a title="In PB" target="_blank" href="'+BASE_URL+'prints/letter?query='+item.bill_code+'" class="btn btn-primary"><i class="fa fa-envelope-o"></i></a></td>';
+			temp += '<td><a title="In HD" target="_blank" href="'+BASE_URL+'prints/guide?query='+item.bill_code+'" class="btn btn-primary"><i class="fa fa-file"></i></a></td>';
+			if(item.orders_code != null){
+				temp += '<td><a title="Tra vận đơn" target="_blank" href="'+BASE_URL+'route/tracking?key='+item.orders_code+'&posts='+item.orders_posts+'" class="btn btn-info"><i class="fa fa-ship"></i></a></td>';
+			}
 			
 			temp +=  '</tr>';
 		});

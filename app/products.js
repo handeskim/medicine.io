@@ -78,8 +78,9 @@ function temp_old_customer(){
 		temp +='';
 		temp +='</div><div id="ResponseSearchCustomer" class="col-md-12"> </div><br>';
 		temp +='<div class="col-md-12">';
-		temp +='<label >Mã khách hàng</label>';
-		temp +='<input id="CodeCustomer" type="text" class="form-control" name="CodeCustomer" value="" placeholder="Mã khách hàng - xxxxx" required readonly>';
+		temp +='<div id="msg_noti_customer"> </div>';
+	
+		temp +='<input id="CodeCustomer" type="hidden" class="form-control" name="CodeCustomer" value="" placeholder="Mã khách hàng - xxxxx" required readonly>';
 		temp +=' </div></div>';
 	$("#template_customer").append(temp);
 }
@@ -111,6 +112,7 @@ function html_list_search_products(list){
 		temp += '<td><span><input type="hidden" id="ProductID'+item.id+'" value="'+item.id+'"/></span></td>';
 		temp += '<td><span>'+item.code_products+' </span></td>';
 		temp += '<td><span>'+item.name_products+'</span></td>';
+		temp += '<td><span>'+item.price+'</span></td>';
 		temp += '<td><span class="btn btn-success btn-small" id="ItemProduct'+item.id+'"><i class="fa fa-cart-plus"> </i></span></td>';
 		temp += '</tr>';
 	});	
@@ -133,6 +135,7 @@ function html_list_search_phone(list){
 }
 function FindPhoneCustomer(){
 	$("#ResponseSearchCustomer").empty();
+	$("#msg_noti_customer").empty();
 	var phone_customer = $("#IndexSearchItemCustomer").val();
 	if(phone_customer === '' || phone_customer === null || phone_customer.length < 5 || phone_customer.length > 13 ){
 		$("#ResponseSearchCustomer").append('<div class="callout callout-danger"><h4>Lỗi xảy ra!</h4><p>Vui lòng không bỏ trống Search.</p></div>');
@@ -153,6 +156,8 @@ function FindPhoneCustomer(){
 						$('#addToPhone'+item.id).click(function() {
 							var itemsPhone = $("#phoneid"+item.id).val();
 							$('#CodeCustomer').val(itemsPhone);
+							var temp_noti_add = '<div class="callout callout-success"><h4> Đã chọn khách hàng!</h4><p> '+item.code+' | '+item.full_name+' | '+item.dien_thoai+' | '+item.dia_chi+'</p></div>';
+							$('#msg_noti_customer').append((temp_noti_add));
 							$("#ulFromCartPhone").empty();
 						});
 					});

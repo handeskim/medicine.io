@@ -9,6 +9,12 @@
 	dateFormat: 'dd-mm-yy'
  });
 </script>
+<script>
+$(document).ready(function(){
+	// $("body").addClass( "myClass yourClass" );
+	$("body").removeClass( "skin-blue sidebar-mini" ).addClass( "skin-blue sidebar-mini sidebar-collapse" );
+})
+</script>
 <section class="content">
 	<div class="row">
 	<div class="col-md-12">
@@ -52,10 +58,7 @@
 						<hr>
 						<div class="form-group col-md-12">
 							<div id="item_cart">
-								<div class="col-md-6">
-									<label >Mã đơn hàng</label>
-									<input id="CodeOrder" type="text" class="form-control" name="CodeOrder" value="" placeholder="Mã đơn hàng - mã vận đơn" required>
-								</div>
+								
 								<div class="col-md-6">
 									<label for="exampleInputEmail1">Nhà cung cấp dịch vụ</label>
 									<select name="NamePost" class="form-control"> 
@@ -64,7 +67,10 @@
 										<?php } ?>
 									</select>
 								</div>
-								
+								<div class="col-md-6">
+									
+									<input id="bill_code" type="hidden" class="form-control" name="bill_code" value="{bill_code}" placeholder="Mã đơn hàng " required readonly>
+								</div>
 							</div>
 							
 						</div>
@@ -149,7 +155,7 @@
 											<label>Ngày gọi lại</label>
 											<input id="date_allBack" type="text" class="form-control" name="date_allBack" placeholder="dd/mm/yyyy"  >
 											<label for="exampleInputEmail1">Ghi chú gọi lại</label>
-											<textarea id="note_callback" name="note_callback" rows="3" cols="50"></textarea>
+											<input id="note_callback" type="text" class="form-control" name="note_callback" placeholder="Ghi chú gọi lại"  >
 										</div>
 									</div>
 									
@@ -163,7 +169,7 @@
 						</div>
 						<div class="form-group col-md-12">
 							<label for="exampleInputEmail1">Ghi chú đơn hàng</label>
-							 <textarea id="note" name="note" rows="3" cols="50"></textarea>
+							 <input id="note" name="note" type="text" class="form-control"  placeholder="Ghi chú đơn hàng"  >
 						</div>
 						
 						<div class="form-group col-md-12">
@@ -185,8 +191,8 @@
 <script>
   $(function () {
      CKEDITOR.replace('use_guide')
-     CKEDITOR.replace('note')
-     CKEDITOR.replace('note_callback')
+     // CKEDITOR.replace('note')
+     // CKEDITOR.replace('note_callback')
     $('.textarea').wysihtml5()
   });
 $('#date_allBack').datepicker({

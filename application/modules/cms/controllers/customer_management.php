@@ -14,6 +14,7 @@ class Customer_Management extends MY_Controller{
 		}
 		
 	}
+	
 	private function InsertCustomer($params){
 		$this->db->insert('customer', $params); 
 		$id_customer = $this->db->insert_id();
@@ -90,6 +91,74 @@ class Customer_Management extends MY_Controller{
 		$this->parser->parse('default/layout/main_curd_Customers',$data);
 		$this->parser->parse('default/footer',$data);
 	}
+	private function detail_view($id_customer){
+		$sql = "SELECT * FROM `customer` WHERE `id` = '$id_customer' LIMIT 1";
+		$response = $this->GlobalMD->query_global($sql);
+		if(isset($response)){
+			if(!empty($response)){
+				return $this->load_temp_details($response);
+			}else{
+				return $response = array();
+			}
+		}else{
+			return $response = array();
+		}
+	}
+	private function load_temp_details($response){
+		$temp = '<h3> Thông tin khách hàng</h3>';
+		$temp .= '<ul id="list_customer">';
+			foreach($response as $key => $value){
+				$temp .='<li> Mã khách hàng: <b id="b_customer">'.$value['code'].'</b></li>';
+				$temp .='<li> Tên khách hàng: <b id="b_customer">'.$value['full_name'].'</b></li>';
+				$temp .='<li> Số điện thoại: <b id="b_customer">'.$value['dien_thoai'].'</b></li>';
+				$temp .='<li> Số điện thoại 2: <b id="b_customer">'.$value['dien_thoai_2'].'</b></li>';
+				$temp .='<li> Địa chỉ:<b id="b_customer"> '.$value['dia_chi'].'</b></li>';
+				$temp .='<li> Email: <b id="b_customer">'.$value['email'].'</b></li>';
+				$temp .='<li> Ngày sinh: <b id="b_customer">'.$value['ngay_sinh'].'</b></li>';
+				$temp .='<li> Hộ chiếu/CMTND: <b id="b_customer">'.$value['passport_id'].'</b></li>';
+				$temp .='<li> Note: <b id="b_customer">'.$value['note'].'</b></li>';
+			}
+		$temp .= '</ul>';
+		$temp .='<style>
+			#b_customer {
+				font-size: 18px;
+			}
+			ul#list_customer {
+				list-style: none;
+				border: 1px solid;
+				  background: #fff;
+			}
+			#list_customer li {
+				height: 35px;
+				margin: 0px;
+				padding: 10px;
+				text-align: left;
+				border-bottom: 1px dotted;
+				margin-bottom: 10px;
+			}
+		</style>';
+		return $temp;
+	}
+	public function details(){
+		$id_customer = $this->input->get('query');
+		$msg ='';
+		$data = array(
+			'msg' => $msg,
+			'content' => $this->detail_view($id_customer),
+			'user_data' => $this->user_data,
+			'excel_command' => $this->excel_command(),
+			'total_customer' => $this->total_customer(),
+			'title'=> 'Chi tiết khách hàng #:'.$id_customer,
+			'title_main' => 'Chi tiết khách hàng',
+		);
+		$this->parser->parse('default/header',$data);
+		$this->parser->parse('default/sidebar',$data);
+		$this->parser->parse('default/main',$data);
+		$this->parser->parse('default/layout/main_curd_Customers',$data);
+		$this->parser->parse('default/footer',$data);
+	}
+	
+	
 	public function view(){
 		$id_customer = $this->input->get('query');
 		$msg ='';

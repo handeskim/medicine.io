@@ -269,13 +269,11 @@ if(! function_exists('random_str')){
 			return $username;
     }
 	}
-	if(! function_exists('random_makholuu')){
-    function random_makholuu(){
-		$length = 5;
-		$lengthc = 5;
+	if(! function_exists('random_billcode')){
+    function random_billcode($staff){
+		$length = 2;
 		$randoms = substr(str_shuffle("0123456789"), 0, $length);
-		$randomc = substr(str_shuffle("0123456789"), 0, $lengthc);
-		$username = "RLK".$randoms.''.$randomc;
+		$username = "PQA".$staff.time().$randoms;
 			return $username;
     }
   }

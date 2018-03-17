@@ -25,7 +25,7 @@
 				$img_awata = "public/images/avata/default.png";
 			}
 		?>
-	  <img src="<?php echo base_url().$img_awata;?>" class="img-circle" alt="User Image">
+	  <img style="height: 45px;" src="<?php echo base_url().$img_awata;?>" class="img-circle" alt="User Image">
 	</div>
 	<div class="pull-left info">
 		<a href="<?php echo base_url('cms/profile');?>"><?php echo $user_data["full_name"]; ?></a>

@@ -45,6 +45,7 @@
   	</script>
 </head>
 <body ng-app="rilaApps" class="hold-transition skin-blue sidebar-mini">
+
 <div class="wrapper">
   <header   class="main-header">
     <!-- Logo -->

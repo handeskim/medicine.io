@@ -30,7 +30,6 @@ $(function(){
 			temp += '<th>Mã khách hàng</th>';
 			temp += '<th>Tên khách hàng</th>';
 			temp += '<th>Ngày nhắc nhở</th>';
-			temp += '<th>Thư điện tử</th>';
 			temp += '<th>Số điện thoại</th>';
 			temp += '<th>Địa chỉ</th>';
 			temp += '<th>Ghi chú</th>'; 
@@ -51,7 +50,6 @@ $(function(){
 				temp +=  '<td>'+item.scheduling_customer+'</td>';
 				temp +=  '<td>'+item.scheduling_fullname+'</td>';
 				temp +=  '<td>'+newdate+'</td>';
-				temp +=  '<td>'+item.scheduling_email+'</td>';
 				temp +=  '<td>'+item.scheduling_phone+'</td>';
 				temp +=  '<td>'+item.scheduling_addr+'</td>';
 				temp +=  '<td>'+item.scheduling_note+'</td>';

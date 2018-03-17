@@ -78,6 +78,25 @@ class Order_new extends MY_Controller{
 		$this->db->where('id', $id);
 		$this->db->update('products', $data); 
 	}
+	private function bill_code(){
+		$staff = $this->staff;
+		$bill_code = random_billcode($staff);
+		return $bill_code;
+	}
+	private function create_bill_code(){
+		$bill_code = $this->bill_code();
+		$sql = "SELECT * FROM orders WHERE `bill_code` =  '$bill_code'";
+		$query = $this->GlobalMD->query_global($sql);
+		if(isset($query)){
+			if(!empty($query)){
+				Order_new::create_bill_code();
+			}else{
+				return $bill_code;
+			}
+		}else{
+			return $bill_code;
+		}
+	}
 	private function InfoCustomert($customer){
 		$sql = "SELECT * FROM customer WHERE `code` =  '$customer'";
 		return $this->GlobalMD->query_global($sql);
@@ -90,7 +109,7 @@ class Order_new extends MY_Controller{
 		$cmd = $this->input->post('cmd');
 		if(!empty($cmd)){
 			$params = $_POST;
-			$checkCode = $this->CheckOrder($params['CodeOrder']);
+			$checkCode = $this->CheckOrder($params['bill_code']);
 			if($checkCode==false){
 				if($params['NameCheckCustomer'] == 2){
 					$code_customer = $this->setUpCustomer($params);
@@ -142,7 +161,8 @@ class Order_new extends MY_Controller{
 					$this->update_quantily($quantily_update,$code_products);
 					$arrayOrder = array(
 						'code_products' => $code_products,
-						'code_orders' => $params['CodeOrder'],
+						'bill_code' => $params['bill_code'],
+						'code_orders' => null,
 						'type_post' => $params['NamePost'],
 						'fee_cod' => $params['fee_cod'],
 						'code_staff' => $this->staff,
@@ -167,7 +187,7 @@ class Order_new extends MY_Controller{
 				}
 				$this->db->trans_complete();
 				if($install==true){
-					$this->Notifacation($params['CodeOrder']);
+					$this->Notifacation($params['bill_code']);
 					$msg =  '<div class="callout callout-success">
 						<h4>Thành công!</h4>
 						<p>Tạo mới đơn hàng thành công </p>
@@ -187,6 +207,7 @@ class Order_new extends MY_Controller{
 		}
 		
 		$data = array(
+			'bill_code' => $this->create_bill_code(),
 			'msg' => $msg,
 			'discounts' => $this->discounts,
 			'user_data' => $this->user_data,
@@ -206,7 +227,7 @@ class Order_new extends MY_Controller{
 		
 	}
 	private function CheckOrder($order){
-		$sql = "SELECT * FROM orders WHERE code_orders = '$order'";
+		$sql = "SELECT * FROM orders WHERE bill_code = '$order'";
 		$resuls = $this->GlobalMD->query_global($sql);
 		if(!empty($resuls)){
 			return true;

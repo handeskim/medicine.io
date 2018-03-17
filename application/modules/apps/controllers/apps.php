@@ -93,6 +93,8 @@ class Apps extends MY_Controller{
 				if($this->authorities !=4 ){
 					$sql = "
 						SELECT o.*,
+						posts.id as posts_id,
+						posts.name_type_orders as posts_name,
 						s.id as staff_id,
 						s.code as staff_code,
 						s.email as staff_email,
@@ -101,7 +103,9 @@ class Apps extends MY_Controller{
 						FROM orders o
 						INNER JOIN staff s ON o.code_staff = s.id
 						INNER JOIN type_oders tp ON o.type_orders = tp.id
+						INNER JOIN type_post posts ON o.type_post = posts.id
 						WHERE o.code_orders LIKE '%$keyword%'
+						OR o.bill_code LIKE '%$keyword%'
 						OR s.code LIKE '%$keyword%'
 						OR o.code_customner LIKE '%$keyword%'
 						OR o.full_name LIKE '%$keyword%'
@@ -115,6 +119,8 @@ class Apps extends MY_Controller{
 					return $this->response;
 				}else{
 					$sql = "SELECT o.*,
+						posts.id as posts_id,
+						posts.name_type_orders as posts_name,
 						s.id as staff_id,
 						s.code as staff_code,
 						s.email as staff_email,
@@ -123,8 +129,10 @@ class Apps extends MY_Controller{
 						FROM orders o
 						INNER JOIN staff s ON o.code_staff = s.id
 						INNER JOIN type_oders tp ON o.type_orders = tp.id
+						INNER JOIN type_post posts ON o.type_post = posts.id
 						WHERE s.code LIKE '%$keyword%'
-						OR code_orders = '$keyword'
+						OR o.bill_code LIKE '%$keyword%'
+						OR o.code_orders = '$keyword'
 						OR o.code_customner LIKE '%$keyword%'
 						OR o.full_name LIKE '%$keyword%'
 						OR  o.dien_thoai LIKE '%$keyword%'
@@ -134,7 +142,7 @@ class Apps extends MY_Controller{
 						LIMIT $ofset,50
 					";	
 					$result = $this->GlobalMD->query_global($sql);
-					// var_dump($sql);
+					
 					if(isset($result)){
 						if(!empty($result)){
 							$response = array();
@@ -164,6 +172,7 @@ class Apps extends MY_Controller{
 		$keyword =  $params["q"]; 
 		if($this->authorities ==4 ){
 			$sql = "SELECT 
+				o.bill_code as bill_code,
 				o.code_orders as orders_code,
 				p.code_products as order_code_products,
 				p.name_products as order_products,
@@ -189,6 +198,7 @@ class Apps extends MY_Controller{
 				INNER JOIN products p ON o.code_products = p.id
 				WHERE o.date_order BETWEEN '$date_start' AND '$date_end'
 				OR s.code LIKE '%$keyword%' 
+				OR o.bill_code LIKE '%$keyword%'
 				OR o.code_orders LIKE '%$keyword%' 
 				OR o.code_customner LIKE '%$keyword%' 
 				OR o.full_name LIKE '%$keyword%' 
@@ -227,6 +237,7 @@ class Apps extends MY_Controller{
 				INNER JOIN products p ON o.code_products = p.id
 				WHERE o.date_order BETWEEN '$date_start' AND '$date_end'
 				AND s.code LIKE '%$keyword%' 
+				OR o.bill_code LIKE '%$keyword%'
 				OR o.code_orders LIKE '%$keyword%' 
 				OR o.code_customner LIKE '%$keyword%' 
 				OR o.full_name LIKE '%$keyword%' 
@@ -258,6 +269,7 @@ class Apps extends MY_Controller{
 				INNER JOIN type_oders tp ON o.type_orders = tp.id
 				WHERE o.date_order BETWEEN '$date_start' AND '$date_end'
 				AND o.code_staff = '$staff' 
+				OR o.bill_code LIKE '%$keyword%'
 				OR o.code_orders LIKE '%$keyword%' 
 				OR o.code_customner LIKE '%$keyword%' 
 				OR o.full_name LIKE '%$keyword%' 
@@ -293,6 +305,7 @@ class Apps extends MY_Controller{
 				WHERE o.date_order BETWEEN '$date_start' AND '$date_end'
 				AND s.`code` LIKE '%$keyword%'
 				OR o.code_orders LIKE '%$keyword%' 
+				OR o.bill_code LIKE '%$keyword%'
 				OR o.code_customner LIKE '%$keyword%' 
 				OR o.full_name LIKE '%$keyword%' 
 				OR o.dien_thoai LIKE '%$keyword%' 

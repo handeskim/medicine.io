@@ -54,6 +54,7 @@ class Scheduling extends MY_Controller{
 			$xcrud->validation_required('code_customer');
 			$xcrud->validation_required('scheduling');
 			$xcrud->change_type('note', 'textarea');
+			$xcrud->button(base_url('cms/customer_management/details?uid={id}'),'Chi Tiết Khách hàng','icon-link','',array('target'=>'_blank'));
 			$xcrud->benchmark();
 			$response = $xcrud->render('edit',$id);
 			return $response;

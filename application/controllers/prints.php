@@ -12,7 +12,7 @@ class Prints extends MY_Controller{
 	}
 	public function details(){
 		if(isset($_GET['query'])){
-			$code_orders = $_GET['query'];
+			$bill_code = $_GET['query'];
 			$sql = "SELECT
 			o.id as orders_id,
 			o.manuals as orders_manuals,
@@ -60,7 +60,7 @@ class Prints extends MY_Controller{
 			INNER JOIN staff s ON o.code_staff = s.id
 			INNER JOIN customer c ON o.code_customner = c.`code`
 			INNER JOIN type_oders odr ON o.type_orders = odr.id
-			WHERE o.code_orders = '$code_orders'";
+			WHERE o.bill_code = '$bill_code'";
 			$data = array(
 				'content' => $this->template_details($sql),
 			);
@@ -69,11 +69,12 @@ class Prints extends MY_Controller{
 	}
 	public function letter(){
 		if(isset($_GET['query'])){
-			$code_orders = $_GET['query'];
+			$bill_code = $_GET['query'];
 			$sql = "SELECT
 			o.id as orders_id,
 			o.manuals as orders_manuals,
 			o.note as order_note,
+			o.bill_code as bill_code,
 			o.code_orders as orders_code,
 			o.price as orders_price,
 			o.total_price as orders_total_price,
@@ -122,7 +123,7 @@ class Prints extends MY_Controller{
 			INNER JOIN staff s ON o.code_staff = s.id
 			INNER JOIN customer c ON o.code_customner = c.`code`
 			INNER JOIN type_oders odr ON o.type_orders = odr.id
-			WHERE o.code_orders = '$code_orders'";
+			WHERE o.bill_code = '$bill_code'";
 			$data = array(
 				'content' => $this->template_Letter($sql),
 			);
@@ -131,11 +132,12 @@ class Prints extends MY_Controller{
 	}
 	public function orders(){
 		if(isset($_GET['query'])){
-			$code_orders = $_GET['query'];
+			$bill_code = $_GET['query'];
 			$sql = "SELECT
 			o.id as orders_id,
 			o.manuals as orders_manuals,
 			o.note as order_note,
+			o.bill_code as bill_code,
 			o.code_orders as orders_code,
 			o.price as orders_price,
 			o.total_price as orders_total_price,
@@ -180,7 +182,7 @@ class Prints extends MY_Controller{
 			INNER JOIN staff s ON o.code_staff = s.id
 			INNER JOIN customer c ON o.code_customner = c.`code`
 			INNER JOIN type_oders odr ON o.type_orders = odr.id
-			WHERE o.code_orders = '$code_orders'";
+			WHERE o.bill_code = '$bill_code'";
 			$data = array(
 				'content' => $this->template_invoice_details($sql),
 			);
@@ -214,11 +216,12 @@ class Prints extends MY_Controller{
 	}
 	public function guide(){
 		if(isset($_GET['query'])){
-			$code_orders = $_GET['query'];
+			$bill_code = $_GET['query'];
 			$sql = "SELECT
 			o.id as orders_id,
 			o.manuals as orders_manuals,
 			o.note as order_note,
+			o.bill_code as bill_code,
 			o.code_orders as orders_code,
 			o.price as orders_price,
 			o.total_price as orders_total_price,
@@ -262,7 +265,7 @@ class Prints extends MY_Controller{
 			INNER JOIN staff s ON o.code_staff = s.id
 			INNER JOIN customer c ON o.code_customner = c.`code`
 			INNER JOIN type_oders odr ON o.type_orders = odr.id
-			WHERE o.code_orders = '$code_orders'";
+			WHERE o.bill_code = '$bill_code'";
 			$data = array(
 				'content' => $this->template_manuals_details($sql),
 			);
@@ -303,10 +306,9 @@ class Prints extends MY_Controller{
 											<img src="'.base_url().'public/logo/logopqa.png" style="width:160px; max-width:300px;">
 										</td>
 										<td>
-											Invoice code#: '.$data_field[0]['orders_code'].'<br>
-											Date Purchase: '.$data_field[0]['orders_date_buy'].'<br>
-											Date Confirmed: '.$data_field[0]['orders_date_comfim'].'<br>
-											Date Delivery: '.$data_field[0]['orders_date_send'].'<br>
+											Mã vận đơn#: '.$data_field[0]['orders_code'].'<br>
+											Ngày mua: '.$data_field[0]['orders_date_buy'].'<br>
+											Ngày xác nhận: '.$data_field[0]['orders_date_comfim'].'<br>
 										</td>
 									</tr>
 									</tbody>
@@ -509,7 +511,8 @@ class Prints extends MY_Controller{
 											<img src="'.base_url().'public/logo/logopqa.png" style="width:160px; max-width:300px;">
 										</td>
 										<td>
-											Mã đơn hàng#: '.$data_field[0]['orders_code'].'<br>
+											Mã đơn hàng#: '.$data_field[0]['bill_code'].'<br>
+											Mã vận đơn#: '.$data_field[0]['orders_code'].'<br>
 											Ngày mua : '.$data_field[0]['orders_date_buy'].'<br>
 											Ngày xác nhận: '.$data_field[0]['orders_date_comfim'].'<br>
 											Ngày gửi hàng: '.$data_field[0]['orders_date_send'].'<br>
